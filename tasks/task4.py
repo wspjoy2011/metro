@@ -13,8 +13,8 @@
 
 def validate_data_type(data: list[int]) -> bool:
     """
-        Data type must be list[int]
-    :param data:
+    Data type must be list[int]
+    :param:
     :return:
     """
     if not isinstance(data, list):
@@ -26,21 +26,15 @@ def validate_data_type(data: list[int]) -> bool:
 
 def sort_only_odd_numbers(numbers: list[int]) -> list[int] | str:
     """
-        Sort only odd numbers
-    :param numbers:
-    :return numbers:
+    Sort only odd numbers
+    :param:
+    :return:
     """
     if not validate_data_type(numbers):
         return f'Data type must be list[int], not {numbers}'
 
-    odd_sorted = sorted([number for number in numbers if number % 2 != 0])
-    pointer = 0
-
-    for i, number in enumerate(numbers):
-        if number % 2 != 0:
-            numbers[i] = odd_sorted[pointer]
-            pointer += 1
-
+    odd_sorted = sorted([number for number in numbers if number % 2 != 0], reverse=True)
+    numbers = [odd_sorted.pop() if number % 2 else number for number in numbers]
     return numbers
 
 
