@@ -11,7 +11,7 @@ def get_list_of_files(folder: str):
     return files
 
 
-def read_data_from_file(path_to_file: str):
+def read_data_from_file(path_to_file: str, ban_names: list[str]):
     """Read statistics from file"""
     if not check_file_exist(path_to_file):
         return False
@@ -23,6 +23,8 @@ def read_data_from_file(path_to_file: str):
             line = parse_names_qty_from_lines(line)
             if line:
                 name = line[0]
+                if name in ban_names:
+                    name = '*' * len(name)
                 name_qty = line[1]
                 names[name] = name_qty
     return names
