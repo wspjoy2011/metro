@@ -3,14 +3,24 @@ from prettytable import PrettyTable
 from baby_names_statistics.tools.find_min_max_numbers_of_names import find_min_max_names
 
 
-def print_table(names, gender,reverse=False):
+def print_table(names, gender, ban_names, reverse=False):
     """Print result console table"""
+    print(ban_names)
     names_table = PrettyTable()
     names_table.field_names = ['Year', f'Most {gender}', 'Most QTY', f'Least {gender}', 'Least QTY']
     for year, name in sorted(names.items(), reverse=reverse):
-        most_name = name[0]
-        least_name = name[-1]
-        names_table.add_row([year, most_name[0], most_name[-1], least_name[0],  least_name[-1]])
+        most_name = name[0][0]
+        most_name_qty = name[0][-1]
+        least_name = name[1][0]
+        least_name_qty = name[1][-1]
+
+        if most_name in ban_names:
+            most_name = '*' * len(most_name)
+
+        if least_name in ban_names:
+            least_name = '*' * len(most_name)
+
+        names_table.add_row([year, most_name, most_name_qty, least_name,  least_name_qty])
     least_name_ever, most_name_ever = find_min_max_names(names)
     print(names_table)
     print(f"""

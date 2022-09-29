@@ -1,6 +1,9 @@
 """Show statistics about baby names"""
 import os
-from collections import defaultdict
+import configparser
+from pathlib import Path
+
+import baby_names_statistics
 
 from baby_names_statistics.handlers.error_handler import check_folder_exist
 from baby_names_statistics.handlers.file_handler import get_list_of_files, read_data_from_file
@@ -39,11 +42,16 @@ def main(folder: str) -> None:
         'boys': boys_names,
         'girls': girls_names
     }
-
+    package_dir = Path(baby_names_statistics.__file__).parent
+    path_to_config = os.path.join(package_dir, 'config.ini')
+    config = configparser.ConfigParser()
+    config.read(path_to_config)
+    ban_names = config['ban-names']['name'].split(', ')
+    print(ban_names)
     # range_names_boys = find_most_least_names_in_range(boys_names, 1900, 2000)
     # print_table(range_names_boys, 'boys')
     # write_to_json(json_format)
-    print_table(boys_names, 'boys')
+    print_table(boys_names, 'boys', ban_names)
     # print_table(girls_names, 'girls')
 
 
