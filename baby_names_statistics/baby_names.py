@@ -8,7 +8,9 @@ import baby_names_statistics
 from baby_names_statistics.handlers.error_handler import check_folder_exist
 from baby_names_statistics.handlers.file_handler import get_list_of_files, read_data_from_file
 from baby_names_statistics.handlers.normalize_handler import filter_files_names, parse_year_group
-from baby_names_statistics.tools.most_least_common import find_most_least_names, find_most_least_names_in_range
+from baby_names_statistics.tools.most_least_common import (
+    find_most_least_names,
+    find_most_least_names_in_range)
 from baby_names_statistics.tools.print_statistics import print_table
 from baby_names_statistics.tools.write_to_json import write_to_json
 

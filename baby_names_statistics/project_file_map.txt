@@ -230,8 +230,6 @@
 -------- file_handler.py
 -------- normalize_handler.py
 -------- __init__.py
------- new
------------- example.py
 --- tools
 -------- find_min_max_numbers_of_names.py
 -------- most_least_common.py
