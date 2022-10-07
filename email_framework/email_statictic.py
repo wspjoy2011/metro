@@ -6,6 +6,7 @@ from datetime import datetime
 from functools import lru_cache
 from prettytable import PrettyTable
 from collections import defaultdict
+from tabulate import tabulate
 
 import email_data
 
@@ -33,7 +34,7 @@ def check_type_exist(filename: str):
     return False
 
 
-@lru_cache
+@lru_cache(maxsize=100)
 def get_emails_from_string(line: str):
     """Find emails in string"""
     email_pattern = re.compile(r'([a-zA-Z0-9+._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)')
@@ -49,7 +50,6 @@ def get_domains_from_file(path_to_file: str):
     domains = defaultdict(int)
     with open(path_to_file) as email_file:
         for line in email_file:
-
             if line:
                 email = get_emails_from_string(line)
                 if email:
@@ -60,10 +60,13 @@ def get_domains_from_file(path_to_file: str):
 
 def sort_domains(domains: dict[str: int], order: bool):
     """Sort domains per emails"""
-    domains_ordered = {domain: qty for domain, qty in sorted(
-        domains.items(),
-        key=lambda item: item[1],
-        reverse=order)}
+    domains_ordered = {
+        domain: qty for domain, qty in sorted(
+            domains.items(),
+            key=lambda item: item[1],
+            reverse=order
+        )
+    }
     return domains_ordered
 
 
@@ -100,4 +103,4 @@ def get_path():
 
 
 if __name__ == '__main__':
-    print(main(get_path(), True))
+    print(main(get_path()))
