@@ -17,7 +17,7 @@ def calc_execution_time(func):
         start = datetime.now()
         func_data = func(*args, **kwargs)
         end = datetime.now()
-        print(f'Func name {func.__name__} time: {end - start}')
+        print(f'Func name {func.__name__}() time: {end - start}')
         return func_data
     return wrapper
 
@@ -49,20 +49,13 @@ def get_domains_from_file(path_to_file: str):
     domains = defaultdict(int)
     with open(path_to_file) as email_file:
         for line in email_file:
-            line = line.strip()
+
             if line:
                 email = get_emails_from_string(line)
                 if email:
-                    domain = get_domain(email)
+                    domain = email.split('@').pop()
                     domains[domain] += 1
     return domains
-
-
-@lru_cache
-def get_domain(email: str):
-    """Get domain from email"""
-    domain = email.split('@').pop()
-    return domain
 
 
 def sort_domains(domains: dict[str: int], order: bool):
