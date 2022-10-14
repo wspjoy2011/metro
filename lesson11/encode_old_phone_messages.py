@@ -1,7 +1,6 @@
 """Encode old phone interface messages"""
 
 
-
 def make_phone_map_keys(phone_interface: dict[str, tuple[str]]):
     """Make an expanded structure of the phone's keys"""
     phone_map_keys = {}
