@@ -23,7 +23,7 @@ def parse_args() -> Namespace:
     parser = argparse.ArgumentParser(prog='Module helps clean code with comments',
                                      usage='%(prog)s delete_comments.py --input "<filename>" [--output "<filename> '
                                            'default clean_code_out.py"]',
-                                     description='Show report about racing logs')
+                                     description='Delete comments from file')
     parser.add_argument('--input',
                         type=str,
                         help='path to file with comments',
@@ -38,7 +38,7 @@ def parse_args() -> Namespace:
     return args
 
 
-def check_exist_file_type(filename: str) -> str | bool:
+def check_exist_file_type(filename: str):
     """Check for FileNotFoundError, UnicodeDecodeError exceptions"""
     try:
         open(filename).readline()
