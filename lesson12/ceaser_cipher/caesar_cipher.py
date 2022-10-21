@@ -16,7 +16,7 @@ def encrypt_message(message: str, shift: int, chars: str):
             char_index = chars.find(char)
             translated_index = char_index + shift
             if translated_index >= len(CHARS):
-                translated_index = translated_index - len(CHARS)
+                translated_index -= len(CHARS)
             translated_text += CHARS[translated_index]
         else:
             translated_text += char
@@ -48,7 +48,7 @@ def main(message: str, shift: int, chars: str, mode: str):
     return result
 
 
-CHARS = ascii_uppercase + ascii_lowercase + digits + punctuation + whitespace
+CHARS = ascii_uppercase + ascii_lowercase + digits + punctuation + ' '
 
 if __name__ == '__main__':
     test_message = 'This is my secret message.'
