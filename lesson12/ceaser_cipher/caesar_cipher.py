@@ -4,7 +4,6 @@ from string import (
     ascii_lowercase,
     digits,
     punctuation,
-    whitespace
 )
 
 
