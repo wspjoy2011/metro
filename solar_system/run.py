@@ -65,8 +65,8 @@ def make_planets():
     mars = Planet(planets_data['mars'], sun)
     phobos = Planet(planets_data['phobos'], mars)
     deimos = Planet(planets_data['deimos'], mars)
-    stars = [earth, moon, saturn, mars, phobos, deimos]
-    return stars
+    planets = [earth, moon, saturn, mars, phobos, deimos]
+    return planets
 
 
 def make_belt_around_planet():
