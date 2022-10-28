@@ -26,7 +26,6 @@ sun.left_border = -SCREEN_WIDTH // 2 + sun.half_size
 while True:
     sun.x = sun.xcor()
     sun.y = sun.ycor()
-
     sun.goto(sun.x + sun.speed, sun.ycor())
     if sun.x > sun.right_border:
         sun.setx(sun.right_border)

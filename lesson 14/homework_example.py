@@ -12,6 +12,7 @@ def make_ball_settings(ball):
     ball.showturtle()
     return ball
 
+
 def check_border(ball):
     global gravity
 

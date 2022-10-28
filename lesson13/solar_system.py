@@ -4,7 +4,7 @@ from math import *
 
 class Planet(Turtle):
     def __init__(self, planet_size, planet_color, radius, star, increase_angle, name='star'):
-        Turtle.__init__(self, shape='circle')
+        super().__init__(shape='circle')
         self.name = name
         self.speed(0)
         self.shapesize(*planet_size)
