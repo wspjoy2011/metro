@@ -5,13 +5,13 @@ from pathlib import Path
 from tkinter import messagebox
 
 from cross_game import assets
-from cross_game.lib.sprites.player import Player
-from cross_game.lib.manager.car_manager import CarManager
-from cross_game.lib.labels.scoreboard import Scoreboard
-from cross_game.lib.labels.pause import PauseLabel
-from cross_game.lib.windows.game_over import GameOverWin
-from cross_game.lib.windows.enter_name import EnterNameWin
-from cross_game.lib.windows.main import Window
+from cross_game.game_lib.sprites.player import Player
+from cross_game.game_lib.manager.car_manager import CarManager
+from cross_game.game_lib.labels.scoreboard import Scoreboard
+from cross_game.game_lib.labels.pause import PauseLabel
+from cross_game.game_lib.windows.game_over import GameOverWin
+from cross_game.game_lib.windows.enter_name import EnterNameWin
+from cross_game.game_lib.windows.main import Window
 
 
 class Game:

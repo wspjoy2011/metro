@@ -1,4 +1,4 @@
-from cross_game.lib.sprites.base_sprite import Sprite
+from cross_game.game_lib.sprites.base_sprite import Sprite
 from cross_game.settings.game_settings import MOVE_DISTANCE, STARTING_POSITION, FINISH_LINE_Y
 
 

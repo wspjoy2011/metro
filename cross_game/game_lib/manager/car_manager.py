@@ -1,6 +1,6 @@
 import random
 
-from cross_game.lib.sprites.car import Car
+from cross_game.game_lib.sprites.car import Car
 from cross_game.settings.game_settings import COLORS
 
 
