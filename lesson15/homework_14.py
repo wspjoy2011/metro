@@ -30,18 +30,22 @@ class Figure(Sprite):
 
     def __init__(self, figure: str):
         super().__init__(figure)
-        self.color(self.get_random_color_rgb())
+        self.color(self.get_random_color())
         self.goto(self.get_random_position())
         self.showturtle()
+        self.x = 0
+        self.y = 0
         self.delta_x = 0
         self.delta_y = 0
 
-    def move_ball(self, gravity: float):
-        self.goto(self.xcor() + self.delta_x, self.ycor() - self.delta_y)
+    def move(self, gravity: float):
+        self.x = self.xcor()
+        self.y = self.ycor()
+        self.goto(self.x + self.delta_x, self.y - self.delta_y)
         self.delta_y += gravity
 
     @staticmethod
-    def get_random_color_rgb():
+    def get_random_color():
         return random(), random(), random()
 
     @staticmethod
@@ -52,57 +56,52 @@ class Figure(Sprite):
 class Game:
     __directions = (-1, 1)
     __gravity = 0.1
-    __balls_qty = 0
+    __figures_qty = 0
 
-    def __init__(self, balls_qty: int):
-        Game.__balls_qty = balls_qty
+    def __init__(self, figures_qty: int):
+        Game.__figures_qty = figures_qty
         self.window = Window()
-        self.balls = self.make_balls(balls_qty)
+        self.figures = self.make_figures(figures_qty)
 
     def run(self):
-        for ball in self.balls:
-            ball.delta_x = 2 * choice(self.__directions)
-            ball.delta_y = 2
+        for figure in self.figures:
+            figure.delta_x = 2 * choice(self.__directions)
+            figure.delta_y = 2
 
         while True:
-            for ball in self.balls:
-                ball.move_ball(Game.__gravity)
-                Game.check_border(ball)
+            for figure in self.figures:
+                figure.move(Game.__gravity)
+                Game.check_border(figure)
             self.window.canvas.update()
-            if Game.__balls_qty < 50:
-                sleep(0.0001 * Game.__balls_qty)
-
-            self.check_collision(self.balls)
-
-    @staticmethod
-    def check_collision(balls: list[Figure]):
-        for i in range(len(balls)):
-            for j in range(i + 1, len(balls)):
-                if balls[i].distance(balls[j]) < Figure.size:
-                    balls[i].delta_x, balls[j].delta_x = balls[j].delta_x, balls[i].delta_x
-                    balls[i].delta_y, balls[j].delta_y = balls[j].delta_y, balls[i].delta_y
+            if Game.__figures_qty < 50:
+                sleep(0.0001 * Game.__figures_qty)
+            self.check_collision(self.figures)
 
     @staticmethod
-    def check_border(ball):
-        y = ball.ycor()
-        x = ball.xcor()
+    def check_collision(figures: list[Figure]):
+        for i in range(len(figures)):
+            for j in range(i + 1, len(figures)):
+                if figures[i].distance(figures[j]) < Figure.size:
+                    figures[i].delta_x, figures[j].delta_x = figures[j].delta_x, figures[i].delta_x
+                    figures[i].delta_y, figures[j].delta_y = figures[j].delta_y, figures[i].delta_y
+
+    @staticmethod
+    def check_border(figure):
+        x = figure.xcor()
+        y = figure.ycor()
 
         if y < -Window.SCREEN_HEIGHT_HALF:
-            ball.delta_y = -ball.delta_y
+            figure.delta_y = -figure.delta_y
 
         if x > Window.SCREEN_WIDTH_HALF or x < -Window.SCREEN_WIDTH_HALF:
-            ball.delta_x = -ball.delta_x
+            figure.delta_x = -figure.delta_x
 
     @staticmethod
-    def make_balls(qty: int):
+    def make_figures(figures_qty: int):
         figures = ('turtle', 'circle', 'square', 'triangle')
-        return [Figure(choice(figures)) for _ in range(qty)]
+        return [Figure(choice(figures)) for _ in range(figures_qty)]
 
 
 if __name__ == '__main__':
-    game = Game(balls_qty=100)
+    game = Game(figures_qty=10)
     game.run()
-
-
-
-
