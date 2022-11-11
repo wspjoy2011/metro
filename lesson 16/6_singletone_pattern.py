@@ -1,5 +1,6 @@
 class DataBase:
     __instance = None
+    __databases = ('postgres', 'mysql', 'sqlite')
 
     def __new__(cls, *args, **kwargs):
         if cls.__instance is None:
@@ -30,11 +31,11 @@ class DataBase:
         print(f'Write {data} to DB: {self.db_name} table: {table}')
 
 
-database = DataBase('postgres', 'root', 'qwerty', 'localhost', '5001')
+database = DataBase('postgres', 'root', 'qwerty', '127.0.0.1', '5001')
 database.connect()
 database.write('persons', 'Some data')
 print(id(database))
 
-database_new = DataBase('mysql', 'root', 'qwerty', 'localhost', '2077')
+database_new = DataBase('mysql', 'root', 'qwerty', '192.168.0.101', '2077')
 database_new.connect()
 print(id(database_new))
