@@ -26,7 +26,7 @@ def intersect_sets(iterable_one: Iterable[Hashable], iterable_second: Iterable[H
 
 if __name__ == '__main__':
     items_one = [None, 1, 'bob']
-    items_second = ['range', 1, 100.0, TypeError]
+    items_second = [range, 1, 100.0, TypeError]
 
     print(*intersect_list_comprehension(items_one, items_second))
     print(*intersect_sets(items_one, items_second))
