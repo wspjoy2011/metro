@@ -53,10 +53,10 @@ class DataBase:
     def close(self):
         print(f'Close connect to DB: {self.db_name}')
 
-    def read(self, table):
+    def read(self, table: str):
         print(f'Read data from database: {self.db_name} from table: {table}')
 
-    def write(self, table, data):
+    def write(self, table: str, data: str):
         print(f'Write {data} to DB: {self.db_name} table: {table}')
 
     @property
@@ -158,6 +158,7 @@ class PersonVerify:
         uppercase_error = re.search(r"[A-Z]", password) is None
         lowercase_error = re.search(r"[a-z]", password) is None
         symbol_error = re.search(r"[ !#$%&'()*+,-./[\\\]^_`{|}~" + r'"]', password) is None
+
         password_error = any([length_error, digit_error, uppercase_error, lowercase_error, symbol_error])
 
         if password_error:
@@ -193,18 +194,3 @@ class PersonVerify:
 if __name__ == '__main__':
     database_one_dto = DataBaseDTO('postgres', 'user', 'qwertyR1!', '127.0.0.1', '5001')
     database_one = DataBase(database_one_dto)
-
-    # database_one.connect()
-    # database_one.write('persons', 'Some data')
-    # print(id(database_one))
-
-    # database_second_dto = DataBaseDTO('mysql', 'root', 'qwerty', '192.168.0.101', '2077')
-    # database_second = DataBase(database_second_dto)
-    # database_second.connect()
-    # print(id(database_second))
-
-    # database_one.db_name = 'new db'
-    # print(database_second)
-
-
-
