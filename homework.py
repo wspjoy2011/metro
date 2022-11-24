@@ -1,5 +1,6 @@
 from collections import namedtuple
 from types import MappingProxyType
+from prettytable import PrettyTable
 
 
 Month = namedtuple('Month', 'number name')
@@ -47,6 +48,10 @@ if __name__ == '__main__':
     print(f'Your choice "{user_month}" not correct')
     print(f'Use next values')
 
+    cli_table = PrettyTable()
+    cli_table.field_names = ['Season', 'Number', 'Name']
+
     for season, months in SEASONS.items():
         for month in months:
-            print(f'Month {month.name}. Number: {month.number}. Season: {season}')
+            cli_table.add_row([season, month.name, month.number])
+    print(cli_table)
