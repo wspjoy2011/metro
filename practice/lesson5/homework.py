@@ -1,6 +1,3 @@
-from functools import lru_cache
-
-
 def validate_data_type(data: list[int]) -> bool:
     """
     Data type must be list[int]
@@ -21,12 +18,11 @@ def sort_only_odd_numbers(numbers: list[int]) -> list[int] | str:
     :return:
     """
 
-    odd_sorted = sorted([number for number in iter(numbers) if number % 2 != 0], reverse=True)
+    odd_sorted = sorted([number for number in numbers if number % 2 != 0], reverse=True)
     numbers = [odd_sorted.pop() if number % 2 else number for number in numbers]
     return numbers
 
 
-@lru_cache(maxsize=128)
 def main(numbers: list[int]) -> str | None:
     """
     Main controller
@@ -40,5 +36,5 @@ def main(numbers: list[int]) -> str | None:
 
 
 if __name__ == '__main__':
-    assert main([3, 2, -1, 4]) == [-1, 2, 3, 4]
+    print(main([3, 2, -1, 4]))
 

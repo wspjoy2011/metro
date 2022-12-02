@@ -2,10 +2,9 @@ from random import randint, choice
 
 
 def binary_search(data, value):
-    middle = 0
     start = 0
     end = len(data)
-    step = 0
+    step = 1
 
     while start <= end:
         print(f'List in step {step}: {str(data[start:end+1])}')
@@ -29,6 +28,7 @@ for _ in range(20):
     numbers.append(randint(1, 100))
 
 random_number = choice(numbers)
+print(random_number)
 numbers.sort()
 # print(numbers, random_number)
 # print(len(numbers) // 2)
